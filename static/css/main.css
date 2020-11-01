@@ -1,1 +1,13 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+.url-input input {
+  width: 50%;
+}
+
+.var-list {
+  word-wrap: break-word;
+}
+
+#clipboard-msg {
+  background-color: green;
+  color: white;
+}
+/*# sourceMappingURL=main.css.map */

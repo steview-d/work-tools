@@ -6,23 +6,58 @@
     <br>
     <div class="row">
         <div class="col-12">
-            <h5 class="mb-0">Enter product URL.</h5>
+            <h5 class="mb-0">Enter product URL to search for variant ID's</h5>
         </div>
         <div class="col-12 mt-2">
-            <form method="POST" action="#" class="mb-5">
-                <div class="qinput-field">
-                    <input placeholder=" url" id="esi-endpoint" name="esi-endpoint" type="text" required>
+            <form method="POST" action="{{ url_for('variant_finder') }}" class="mb-5">
+                <div class="url-input">
+                    <input placeholder="" id="product-url" name="product-url" type="text" required>
                 </div>
                 <button class="btn btn-sm btn-outline-secondary mt-2" type="submit">Go!</button>
             </form>
-            <h6>Output</h6>
-            <div id="esi-response" class="esi-outer">
-                <div class="esi-inner">
-                    {{ query }}
-                    <br><hr>
-                    {{ result }}
-                </div>
+
+
+            {% if variants %}
+            <hr>
+            <h6 class="mb-1">{{ product_name }}</h6>
+            <p class="mb-2">Select variants to add to list</p>
+            <div>
+                <form method="POST" class="mb-5">
+                    {% for variant in variants %}
+                    <input type="checkbox" id="{{ variant.id }}" name="variant{{ loop.index }}"
+                        value="{{ variant.id }}">
+                    <label>&nbsp;&nbsp;{{ variant.public_title }} - {{ variant.id }}</label><br>
+                    {% endfor %}
+                    <input type="hidden" name="variant_list" value="true">
+                    <button class="btn btn-sm btn-outline-secondary mt-2" type="submit">Add</button>
+                    <button href="{{ url_for('variant_finder') }}" class="btn btn-sm btn-outline-danger mt-2">Cancel</button>
+                </form>
+
             </div>
+            {% endif %}
+
+            <hr>
+            <h6 class="mb-0">Stored Variants</h6>
+            {% if id_list %}
+            <div id="var-list" class="var-list mt-1">
+                {% for id in id_list %}
+                {{- id -}}
+                {{- "," if not loop.last -}}
+                {% endfor %}
+            </div>
+            {% else %}
+            <p><small>No variant ID's stored</small></p>
+            {% endif %}
+
+            {% if id_list %}
+            <form method="POST">
+                <input type="hidden" name="clear_list" value="true">
+                <div class="btn btn-sm btn-outline-success mt-3 mr-2" onclick="copyToClipboard()">Copy to Clipboard</div>
+                <button class="btn btn-sm btn-outline-danger mt-3" type="submit">Clear List</button>
+            </form>
+            {% endif %}
+            <span id="clipboard-msg">
+            </span>
         </div>
 
     </div>
