@@ -8,10 +8,16 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 messages = []
 
-@app.route('/', methods = ["GET"])
-def index():
 
+@app.route('/', methods=["GET"])
+def index():
     return render_template("index.html")
+
+
+@app.route('/variant_finder', methods=["GET"])
+def variant_finder():
+
+    return render_template("variant_finder.html")
 
 
 if __name__ == "__main__":

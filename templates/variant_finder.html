@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <br>
+    <h1 class="text-center">Shopify Variant ID Finder</h1>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <h5 class="mb-0">Enter product URL.</h5>
+        </div>
+        <div class="col-12 mt-2">
+            <form method="POST" action="#" class="mb-5">
+                <div class="qinput-field">
+                    <input placeholder=" url" id="esi-endpoint" name="esi-endpoint" type="text" required>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary mt-2" type="submit">Go!</button>
+            </form>
+            <h6>Output</h6>
+            <div id="esi-response" class="esi-outer">
+                <div class="esi-inner">
+                    {{ query }}
+                    <br><hr>
+                    {{ result }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <hr>
+            <div><a class="btn btn-sm btn-outline-primary" href="{{ url_for('index') }}" role="button">Back</a></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
