@@ -52,7 +52,7 @@
             {% if id_list %}
             <form method="POST">
                 <input type="hidden" name="clear_list" value="true">
-                <div class="btn btn-sm btn-outline-success mt-3 mr-2" onclick="copyToClipboard()">Copy to Clipboard</div>
+                <div id="btnCopy" class="btn btn-sm btn-outline-success mt-3 mr-2" onclick="copyToClipboard()">Copy to Clipboard</div>
                 <button class="btn btn-sm btn-outline-danger mt-3" type="submit">Clear List</button>
             </form>
             {% endif %}

@@ -6,8 +6,13 @@ function copyToClipboard() {
     document.execCommand("copy");
     window.getSelection().removeAllRanges();
 
-    $('#clipboard-msg').text("Variant ID's added to clipboard")
+    $('#btnCopy').html("Copied!")
     setTimeout(function() {
-        $('#clipboard-msg').text("")
-    }, 2000)
+        $('#btnCopy').text("Copy to Clipboard")
+    }, 1500)
+
+
   }
+
+
+  
