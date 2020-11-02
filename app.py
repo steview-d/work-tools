@@ -17,8 +17,7 @@ messages = []
 
 @app.route('/', methods=["GET"])
 def index():
-    if session['variants'] is None:
-        session['variants'] = []
+    session['variants'] = []
 
     return render_template("index.html")
 
@@ -76,4 +75,4 @@ def scrape_variant(url):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int("5000"), debug=True)
+    app.run(host="0.0.0.0", port=int("5000"), debug=False)
